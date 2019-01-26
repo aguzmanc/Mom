@@ -49,7 +49,7 @@ public class PlayerControl : MonoBehaviour
 			_anim.SetTrigger("Move");
 
 			Vector3 aheadPos = _rot.position + new Vector3(x, 0, z);
-			aheadPos = new Vector3(aheadPos.x, _rot.position.y+1, aheadPos.z);
+			aheadPos = new Vector3(aheadPos.x, _rot.position.y+1.2f, aheadPos.z);
 
 			RaycastHit[] hits = Physics.RaycastAll(aheadPos, Vector3.down, 2);
 			bool allowed = false;
