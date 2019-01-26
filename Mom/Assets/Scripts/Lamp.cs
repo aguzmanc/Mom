@@ -5,13 +5,13 @@ using UnityEngine;
 public class Lamp : Activable 
 {
 	Material _mat;
-	Color _originalColor;
 
+	[ColorUsageAttribute(true,true)]
+	public Color Color;
 	public GameObject SoundPrototype;
 
 	void Awake(){
 		_mat = GetComponent<Renderer>().material;
-		_originalColor = _mat.GetColor("_EmissionColor");
 	}
 
 	public override void Toggle(){
@@ -22,7 +22,7 @@ public class Lamp : Activable
 		} else {
 			_mat.EnableKeyword("_EMISSION");
 			_mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
-			_mat.SetColor("_EmissionColor", _originalColor);
+			_mat.SetColor("_EmissionColor", this.Color);
 		}
 
 		GameObject obj = (GameObject)Instantiate(SoundPrototype);
@@ -30,5 +30,7 @@ public class Lamp : Activable
 
 		Active = !Active;
 		LightsController.Instance.UpdateLights();
+
+		_NotifyChanges();
 	}
 }

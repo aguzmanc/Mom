@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TVLight : MonoBehaviour 
+public class TVLight : Activable 
 {
 	float x,y;
 	Light _light;
@@ -27,6 +27,12 @@ public class TVLight : MonoBehaviour
 
 		_light.intensity = Mathf.PerlinNoise(x,y) * MaxIntensity;
 		_light.color = Gradient.Evaluate(Mathf.PerlinNoise(x,y));
+	}
+
+	public override void Toggle(){
+		_light.enabled = !_light.enabled;
+
+		_NotifyChanges();
 	}
 
 	IEnumerator ChangeColor(){

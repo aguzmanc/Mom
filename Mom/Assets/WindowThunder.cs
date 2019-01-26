@@ -4,40 +4,37 @@ using UnityEngine;
 
 public class WindowThunder : MonoBehaviour 
 {
-    Light _light;
-    Material _mat;
-
-	public AnimationCurve Curve;
-    [Range(0.1f, 5f)]
-    public float TimeOfAnimation;
-    public GameObject ThunderSoundPrototype;
+    public Light _light;
+    public Material _mat;
 
     void Awake() {
-        _light = GetComponentInChildren<Light>();
-        _mat = GetComponentInChildren<Renderer>().material;
+        Renderer rend = GetComponent<Renderer>();
+        if(rend==null)
+            rend = GetComponentInChildren<Renderer>();
+
+        _mat = rend.material;
+
+        _light = GetComponent<Light>();
+        if(_light==null)
+            _light = GetComponentInChildren<Light>();
     }
 
-    void Update() {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            StartCoroutine(Thunder());
-        }
+
+    void Start() {
+        LightsController.Instance.OnThunderIntensity += _OnThunderIntensity;
     }
 
-    IEnumerator Thunder()
+
+    void _OnThunderIntensity(float intensity)
     {
-        float remain = TimeOfAnimation;
-        GameObject sound = (GameObject)Instantiate(ThunderSoundPrototype);
-        Destroy(sound, 12);
-        while(remain>0){
-            float val = Curve.Evaluate(1f-(remain/TimeOfAnimation));
+        if(_light!=null){
+            _light.intensity = intensity * 30;
+        }
 
-            _light.intensity = val * 30;
-            Color col = Color.Lerp(Color.black, Color.white, val);
+        if(_mat!=null){
+            Color col = Color.Lerp(Color.black, Color.white, intensity);
             _mat.SetColor("_Color", col);
             _mat.SetColor("_EmissionColor",col);
-
-            yield return new WaitForEndOfFrame();
-            remain -= Time.deltaTime;
         }
     }
 }

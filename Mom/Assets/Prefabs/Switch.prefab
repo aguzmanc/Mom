@@ -357,7 +357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642a521424d383a47b6768a3e7835e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Active: 1
+  Active: 0
+  Color: {r: 5.992157, g: 5.4588237, b: 4.4862747, a: 0}
   SoundPrototype: {fileID: 1965870598352480, guid: afb6c3d8351ccd64ab6102df31ff0ada,
     type: 2}
 --- !u!114 &114814549846244266
