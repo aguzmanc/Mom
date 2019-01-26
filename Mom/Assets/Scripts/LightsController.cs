@@ -17,9 +17,9 @@ public class LightsController : MonoBehaviour
 	public AnimationCurve Curve;
     [Range(0.1f, 5f)]
     public float TimeOfAnimation;
-	[Range(12f, 20f)]
+	[Range(2f, 20f)]
 	public float MinThunderCycle=12f;
-	[Range(13f, 30f)]
+	[Range(3f, 30f)]
 	public float MaxThunderCycle=20f;
 	public GameObject ThunderSoundPrototype;
 

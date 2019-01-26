@@ -24,6 +24,16 @@ public class ConditionalObject : MonoBehaviour
 				Excluded[i].OnStateChange += _CheckStates;
 	}
 
+	void OnDestroy(){
+		if(Required!=null)
+			for(int i=0;i<Required.Count;i++)
+				Required[i].OnStateChange -= _CheckStates;
+			
+		if(Excluded!=null)
+			for(int i=0;i<Excluded.Count;i++)
+				Excluded[i].OnStateChange -= _CheckStates;
+	}
+
 	void _CheckStates(object src, System.EventArgs args) {
 		bool req = true;
 		if(Required!=null){
@@ -42,11 +52,18 @@ public class ConditionalObject : MonoBehaviour
 					break;
 				}
 			}
-
 		
 		if(req&&excl) {
-			_mainObject.SetActive(true);
-			Destroy(this);
+			StartCoroutine(KeyFound());
 		}
+	}
+
+	IEnumerator KeyFound(){
+		_mainObject.SetActive(true);
+		yield return new WaitForSeconds(.2f);
+		DialogController.Instance.Say("ESO!!.. Mira, allá estaba la llave");
+		yield return new WaitForSeconds(4f);
+		DialogController.Instance.Say("Agarremos la llave, veamos si mamá sigue en el sofá...");
+		Destroy(this);
 	}
 }

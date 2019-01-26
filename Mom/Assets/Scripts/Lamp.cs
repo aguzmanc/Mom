@@ -10,7 +10,7 @@ public class Lamp : Activable
 	public Color Color;
 	public GameObject SoundPrototype;
 
-	void Awake(){
+	void Awake() {
 		_mat = GetComponent<Renderer>().material;
 	}
 

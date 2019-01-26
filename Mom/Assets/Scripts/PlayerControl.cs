@@ -11,6 +11,8 @@ public class PlayerControl : MonoBehaviour
 	[Range(0f, 1f)]
 	public float MovementThreshold=0.5f;
 
+	public GameObject[] StepSounds;
+
 	public Vector3 Forward{get{
 		return _rot.forward;
 	}}
@@ -47,6 +49,11 @@ public class PlayerControl : MonoBehaviour
 		if(x!=0 || z!=0){
 			_rot.rotation=Quaternion.LookRotation(new Vector3(x, 0, z));
 			_anim.SetTrigger("Move");
+
+			GameObject objSound = (GameObject)Instantiate(
+				StepSounds[Random.Range(0, StepSounds.Length)]
+			);
+			Destroy(objSound, 4);
 
 			Vector3 aheadPos = _rot.position + new Vector3(x, 0, z);
 			aheadPos = new Vector3(aheadPos.x, _rot.position.y+1.2f, aheadPos.z);

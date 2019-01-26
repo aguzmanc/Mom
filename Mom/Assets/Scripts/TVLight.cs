@@ -31,8 +31,13 @@ public class TVLight : Activable
 
 	public override void Toggle(){
 		_light.enabled = !_light.enabled;
+		Active = !Active;
 
 		_NotifyChanges();
+
+		DialogController dialogs = DialogController.Instance;
+		dialogs.Say(
+			Active?"Mejor apaguemos la tele":"Mucho mejor, menos ruido");
 	}
 
 	IEnumerator ChangeColor(){
