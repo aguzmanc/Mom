@@ -13,7 +13,6 @@ public class CameraAnchor : MonoBehaviour
 			if(rig!=null)
 				rig._target = transform.parent;
 
-
 			GameObject ob = GameObject.Find(PreviousRoomName);
 			FadeRoom room = null;
 			if(ob!=null){
