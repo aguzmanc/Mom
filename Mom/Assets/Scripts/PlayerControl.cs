@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
 	float _hh=0, _vv=0;
 	Transform _rot;
 	Animator _anim;
+	GameObject _button;
 
 	[Range(0f, 1f)]
 	public float MovementThreshold=0.5f;
@@ -17,10 +18,20 @@ public class PlayerControl : MonoBehaviour
 		return _rot.forward;
 	}}
 
+	public void HideButton(){_button.SetActive(false);}
+	public void ShowButton(){_button.SetActive(true);}
+
 	void Awake(){
 		_rot = transform.Find("rot");
+		_button = transform.Find("button").gameObject;
 		_anim = GetComponent<Animator>();
 	}
+
+	void Start() {
+		HideButton();
+	}
+
+
 
 
 	void Update () {

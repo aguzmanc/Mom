@@ -14,13 +14,13 @@ public class SonDialog : MonoBehaviour
 		_obj.SetActive(false);
 	}
 
-	void Start () {
+	public virtual void Start () {
 		DialogController.Instance.OnSonDialog += _Say;		
 	}
 	
 
 	Coroutine _coroutine;
-	void _Say(string text){
+	protected void _Say(string text){
 		if(_coroutine!=null)
 			StopCoroutine(_coroutine);
 

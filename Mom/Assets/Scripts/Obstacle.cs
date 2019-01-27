@@ -14,7 +14,12 @@ public class Obstacle : MonoBehaviour
 		if(other.tag == "Floor"){
 			other.GetComponent<Floor>().Walkable = false;
 			floors.Add(other.GetComponent<Floor>());
-			
+		}
+	}
+
+	void OnDestroy() {
+		for(int i=0;i<floors.Count;i++){
+			floors[i].Walkable=true;
 		}
 	}
 }

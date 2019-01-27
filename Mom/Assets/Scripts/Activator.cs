@@ -8,10 +8,12 @@ public class Activator : MonoBehaviour
 
 	public Activable Item;
 
+	
+
 	void Update(){
 		if(_player!=null) {
 			if(Input.GetButtonDown("Fire1")){
-				if(Vector3.Dot(_player.Forward, transform.forward) > 0.1f)
+				//if(Vector3.Dot(_player.Forward, transform.forward) > 0.1f)
 					Item.Toggle();
 			}
 		}
@@ -22,11 +24,13 @@ public class Activator : MonoBehaviour
 	void OnTriggerEnter(Collider other) {
 		if(other.tag=="Player"){
 			_player = other.GetComponentInParent<PlayerControl>();
+			_player.ShowButton();
 		}
 	}
 
 	void OnTriggerExit(Collider other) {
 		if(other.tag=="Player")	{
+			_player.HideButton();
 			_player=null;
 		}
 	}
