@@ -43,14 +43,14 @@ public class LightsController : MonoBehaviour
 		yield return new WaitForSeconds(5f); // Time to First thunder
 
 		while(true) {
-			yield return _Thunder();
+			yield return Thunder();
 			yield return new WaitForSeconds(Random.Range(MinThunderCycle, MaxThunderCycle));
 		}
 	}
 
 
 	
-	IEnumerator _Thunder()
+	public IEnumerator Thunder()
     {
         float remain = TimeOfAnimation;
         GameObject sound = (GameObject)Instantiate(ThunderSoundPrototype);
