@@ -32,16 +32,16 @@ public class WakeUpMom : Activable
 		yield return new WaitForSeconds(3f);
 		dialog.Say("Si no estuviera, esta casa estaría vacía...");
 		yield return new WaitForSeconds(3f);
-		dialog.Say("Ella lo convierte en un HOGAR...");
+		dialog.Say("Hace mucho dejó de ser un HOGAR sin ella");
 		yield return new WaitForSeconds(1f);
-		dialog.Say("Ella lo convierte en un HOGAR...");
+		dialog.Say("Hace mucho dejó de ser un HOGAR sin ella");
 		yield return new WaitForSeconds(1f);
-		dialog.Say("Ella lo convierte en un HOGAR...");
+		dialog.Say("Hace mucho dejó de ser un HOGAR sin ella");
 		yield return new WaitForSeconds(3f);
 
 		LightsController.Instance.Thunder();
 		transform.Find("mom").gameObject.SetActive(false);
-		GameObject.FindObjectOfType<PlayerControl>().gameObject.SetActive(false);
+		GameObject.FindObjectOfType<PlayerControl>().enabled=false;
 		transform.Find("music").gameObject.SetActive(true);
 		BackgroundMusic.SetActive(false);
 		Credits.SetActive(true);

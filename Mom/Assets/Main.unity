@@ -9727,7 +9727,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\"WARM LIGHTS\"\nIdea original, programacion y desarrollo: \nArnold Guzman.\nGlobal
+  m_Text: "\"WARM LIGHTS\"\nIdea original, programacion y arte: \nArnold Marcelo Guzman.\nGlobal
     Game Jam 2019"
 --- !u!222 &627506170
 CanvasRenderer:
